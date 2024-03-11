@@ -14,7 +14,7 @@ const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const route = require('./routes.js');
 const path = require('path');
-const helmet = require('helmet');
+//const helmet = require('helmet');
 const csrf = require('csurf');
 const { checkCsrfError, csrfMiddleware, meuMiddleware } = require('./src/middlewares/middleware');
 
@@ -35,7 +35,7 @@ const sessionOptions = session({
     store: MongoStore.create({ mongoUrl: process.env.CONNECTIONSTRING})
 })
 
-app.use(helmet());
+//app.use(helmet());
 app.use(sessionOptions);
 app.use(flash());
 

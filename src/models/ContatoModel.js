@@ -68,6 +68,7 @@ class Contato {
         this.valida();
         if (this.errors.length > 0) return;
         const contato = await ContatoModel.findByIdAndUpdate(id, this.body, { new: true });
+        return contato;
     }
 
     static async buscaContato (id) {

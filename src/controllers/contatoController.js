@@ -5,6 +5,8 @@ exports.index = (req, res) => {
       res.render('indexContato', {
         contato: {}
       });
+    } else {
+      res.redirect('/');
     }
 }
 
@@ -40,6 +42,7 @@ exports.editIndex = async (req, res) => {
 
 exports.edit = async (req, res) => {
     try {
+      console.log("Cheguei");
         if (!req.params.id) return res.render('404');
         const contato = new Contato(req.body, req.session.user._id);
         await contato.edit(req.params.id);

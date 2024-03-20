@@ -21,7 +21,7 @@ exports.loginRequired = (req, res, next) => {
     if (!req.session.user) {
         req.flash('errors', 'Você não está logado!')
         req.session.save(() => {
-            res.redirect('/')});
+            res.render('/')});
     }
     next();
 }

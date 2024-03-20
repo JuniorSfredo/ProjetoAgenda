@@ -3,3 +3,17 @@
     font-size: 13px;
     color: red;
 }
+
+.btnLogin {
+  padding: 10px 100px;
+  font-weight: bold;
+  background-color: #343a40;
+  color: white;
+}
+
+.btnLogin:hover {
+  transition: ease-in .2s;
+  background-color: #535c67;
+  color: white;
+  border-radius: 5px;
+}

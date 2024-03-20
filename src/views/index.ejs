@@ -22,15 +22,22 @@
                         <td class="text-center"><%= contato.sobrenome %></td>
                         <td class="text-center"><%= contato.telefone %></td>
                         <td class="text-center"><%= contato.email %></td>
-                        <td class="text-center"><a href="/contato/edit/<%= contato._id %>">Editar</a></td>
+                        <td class="text-center"><a href="/contato/<%= contato._id %>">Editar</a></td>
                         <td class="text-center"><a class="text-danger" href="/contato/delete/<%= contato._id %>">Excluir</a></td>
                     </tr>
                 <% }); %>
             </table>
         </div>
     <% } else { %>
-        <p class="text-center lead"><b>Ainda não há contatos =(</b></p>
+        <p class="text-center lead"><b>Faça login para ver seus contatos: </b></p>
     <% } %>
+
+
+    <% if (!user) {%>
+      <div class="text-center lead">
+        <a href="/login" class="btn mt-3 btnLogin">Fazer Login</a>
+      </div>
+    <% }%>
 </div>
 
 <%- include('includes/footer')%>

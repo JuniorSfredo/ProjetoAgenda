@@ -6,38 +6,39 @@
         <div class="col-lg-2"></div>
         <div class="col-lg-8">
             <h1 class="display-1 text-center mt-4"> <strong>Agenda</strong></h1>
-            <p class="text-center mt-4">Seus Contatos estão abaixo:</p>
         </div>
         <div class="col-lg-2"></div>
     </div>
 
     <%- include('includes/messages')%>
-
-    <% if (contatos.length > 0) { %>
-        <div class="responsive-table">
-            <table class="table mt-4">
-                <% contatos.forEach(contato => {%>
-                    <tr>
-                        <td class="text-center"><%= contato.nome %></td>
-                        <td class="text-center"><%= contato.sobrenome %></td>
-                        <td class="text-center"><%= contato.telefone %></td>
-                        <td class="text-center"><%= contato.email %></td>
-                        <td class="text-center"><a href="/contato/<%= contato._id %>">Editar</a></td>
-                        <td class="text-center"><a class="text-danger" href="/contato/delete/<%= contato._id %>">Excluir</a></td>
-                    </tr>
-                <% }); %>
-            </table>
-        </div>
-    <% } else { %>
-        <p class="text-center lead"><b>Faça login para ver seus contatos: </b></p>
-    <% } %>
-
-
     <% if (!user) {%>
+      <p class="text-center lead"><b>Faça login para ver seus contatos: </b></p>
       <div class="text-center lead">
         <a href="/login" class="btn mt-3 btnLogin">Fazer Login</a>
       </div>
-    <% }%>
+    <% } else { %>
+      <% if (contatos.length > 0) { %>
+          <div class="responsive-table">
+              <table class="table mt-4">
+                  <% contatos.forEach(contato => {%>
+                      <tr>
+                          <td class="text-center"><%= contato.nome %></td>
+                          <td class="text-center"><%= contato.sobrenome %></td>
+                          <td class="text-center"><%= contato.telefone %></td>
+                          <td class="text-center"><%= contato.email %></td>
+                          <td class="text-center"><a href="/contato/<%= contato._id %>">Editar</a></td>
+                          <td class="text-center"><a class="text-danger" href="/contato/delete/<%= contato._id %>">Excluir</a></td>
+                      </tr>
+                  <% }); %>
+              </table>
+          </div>
+      <% } else { %> 
+        <div class="text-center lead">
+          <p class="m-3"><b>Você não registrou nenhum contato =( </b></p>
+          <a href="/contato" class="btn mt-3 btnLogin">Adicionar contato</a>
+        </div>
+      <% } %>
+    <% } %>
 </div>
 
 <%- include('includes/footer')%>

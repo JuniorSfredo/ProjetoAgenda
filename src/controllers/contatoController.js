@@ -1,14 +1,16 @@
 const Contato = require('../models/ContatoModel');
 
 exports.index = (req, res) => {
-    res.render('indexContato', { 
-        contato: {} 
-    });
+    if (req.session.user) {
+      res.render('indexContato', {
+        contato: {}
+      });
+    }
 }
 
 exports.register = async (req, res) => {
     try { 
-        const contato = new Contato(req.body);
+        const contato = new Contato(req.body, req.session.user._id);
         await contato.register();
 
         if (contato.errors.length > 0) {
@@ -39,8 +41,7 @@ exports.editIndex = async (req, res) => {
 exports.edit = async (req, res) => {
     try {
         if (!req.params.id) return res.render('404');
-
-        const contato = new Contato(req.body);
+        const contato = new Contato(req.body, req.session.user._id);
         await contato.edit(req.params.id);
     
         if (contato.errors.length > 0) {

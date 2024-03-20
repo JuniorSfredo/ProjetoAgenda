@@ -7,15 +7,17 @@ const ContatoSchema = new mongoose.Schema({
     email: { type: String, required: false },
     telefone: { type: String, required: false },
     criadoEm: { type: Date, default: Date.now},
+    userId: { type: String, required: true },
 });
 
 const ContatoModel = mongoose.model('Contato', ContatoSchema);
 
 class Contato {
-    constructor (body) {
+    constructor (body, id) {
         this.body = body;
         this.errors = [];
         this.contato = null;
+        this.id = id;
     }
 
     async register() {
@@ -37,8 +39,6 @@ class Contato {
         if (!this.body.email && !this.body.telefone) { 
             this.errors.push('Pelo menos um contato precisa ser enviado: e-mail ou telefone');
         }
-
-        
     }
 
     cleanUp() {
@@ -53,6 +53,7 @@ class Contato {
             sobrenome: this.body.sobrenome,
             email: this.body.email,
             telefone: this.body.telefone,
+            userId: this.id,
         }
     }
 
@@ -69,8 +70,8 @@ class Contato {
         const contato = await ContatoModel.findByIdAndUpdate(id, this.body, { new: true });
     }
 
-    static async buscaContato () {
-        const contatos = await ContatoModel.find().sort( {criadoEm: -1} );
+    static async buscaContato (id) {
+        const contatos = await ContatoModel.find({ userId: id }).sort( {criadoEm: -1} );
         return contatos;
     }
 

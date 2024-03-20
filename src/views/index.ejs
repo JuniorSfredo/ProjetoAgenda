@@ -14,20 +14,20 @@
     <%- include('includes/messages')%>
 
     <% if (contatos.length > 0) { %>
-    <div class="responsive-table">
-        <table class="table mt-4">
-            <% contatos.forEach(contato => {%>
-                <tr>
-                    <td class="text-center"><%= contato.nome %></td>
-                    <td class="text-center"><%= contato.sobrenome %></td>
-                    <td class="text-center"><%= contato.telefone %></td>
-                    <td class="text-center"><%= contato.email %></td>
-                    <td class="text-center"><a href="/contato/edit/<%= contato._id %>">Editar</a></td>
-                    <td class="text-center"><a class="text-danger" href="/contato/delete/<%= contato._id %>">Excluir</a></td>
-                </tr>
-            <% }); %>
-        </table>
-    </div>
+        <div class="responsive-table">
+            <table class="table mt-4">
+                <% contatos.forEach(contato => {%>
+                    <tr>
+                        <td class="text-center"><%= contato.nome %></td>
+                        <td class="text-center"><%= contato.sobrenome %></td>
+                        <td class="text-center"><%= contato.telefone %></td>
+                        <td class="text-center"><%= contato.email %></td>
+                        <td class="text-center"><a href="/contato/edit/<%= contato._id %>">Editar</a></td>
+                        <td class="text-center"><a class="text-danger" href="/contato/delete/<%= contato._id %>">Excluir</a></td>
+                    </tr>
+                <% }); %>
+            </table>
+        </div>
     <% } else { %>
         <p class="text-center lead"><b>Ainda não há contatos =(</b></p>
     <% } %>

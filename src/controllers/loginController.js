@@ -23,7 +23,6 @@ exports.register = async function (req, res) {
             return res.redirect('/login');
         });
     } catch(e) {
-        console.log(e);
         return res.render('404');
     }
 
@@ -47,9 +46,7 @@ exports.login = async function (req, res) {
         req.session.save(function() {
           return res.redirect('/');
         });
-        console.log(req.session.user);
     } catch(e) {
-        console.log(e);
         return res.render('404');
     }
 }
